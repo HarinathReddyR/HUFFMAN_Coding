@@ -1,0 +1,49 @@
+Huffman Coding is a widely used method for data compression that assigns variable-length codes to input characters, with shorter codes assigned to more frequent characters and longer codes assigned to less frequent ones. This approach reduces the overall size of the encoded data compared to fixed-length coding, making it highly effective for compressing text and other forms of data with repetitive patterns.
+Key Concepts of Huffman Coding
+Frequency Analysis: First, the frequency of each character in the data is calculated. Characters that occur more frequently are given shorter codes, while less frequent characters get longer codes.
+Binary Tree Construction: A binary tree is created to represent the coding scheme. Each character is a leaf node, and branches from root to leaf determine the binary code.
+The process starts by treating each character as a leaf node, with the character's frequency as its weight.
+Nodes are combined iteratively by selecting two nodes with the smallest weights, forming a new node with a weight equal to the sum of these two. This continues until there is only one node left, which becomes the root of the Huffman Tree.
+Code Assignment: Traverse the Huffman Tree to assign binary codes to each character.
+Starting from the root, assign 0 to the left branch and 1 to the right branch.
+Each unique path from root to leaf node represents the binary code for a character.
+Data Encoding: The input data is encoded by replacing each character with its corresponding Huffman code, producing a compressed binary string.
+Data Decoding: To retrieve the original data, the compressed binary string is decoded by traversing the Huffman Tree from the root. Each 0 or 1 in the binary string dictates the path to follow until a leaf node (character) is reached.
+Steps in Huffman Coding
+Frequency Calculation:
+Suppose we have a string, like "aabbbccde". The frequency of each character is:
+a: 2, b: 3, c: 2, d: 1, e: 1
+Building the Huffman Tree:
+Tree Nodes Creation: Each unique character is represented as a leaf node in the Huffman Tree. Each node stores:
+
+The character
+The frequency of that character
+Combining Nodes by Frequency: The nodes are combined based on frequency to build a tree structure. Here’s how:
+
+Start with all characters as separate nodes.
+Combine the two nodes with the smallest frequencies to form a new node with a frequency equal to the sum of the two. This new node represents a branch.
+Repeat this process until all nodes are combined into a single tree.
+Assigning Codes:
+Once the Huffman Tree is built, binary codes are assigned to each character by traversing the tree:
+Starting from the root, assign a 0 to the left branch and a 1 to the right branch.
+Traverse down to each leaf node, appending 0 or 1 based on the path taken.
+For our example, the codes might look like:
+a: 10
+b: 11
+c: 01
+d: 000
+e: 001
+4. Encoding the Data
+Replace each character in the original data with its binary code:
+For aabbbccde, the encoded version would be:
+10101111110100001
+This binary string is the compressed representation of the original data.
+Decoding the Data
+To decode, traverse the Huffman Tree using the binary string:
+Start at the root node, following 0 and 1 paths until reaching a leaf node, which represents a character.
+Continue this process for the entire binary string to reconstruct the original data.
+
+Why Huffman Coding is Efficient
+Variable-Length Encoding: By giving shorter codes to frequent characters and longer codes to less frequent ones, Huffman Coding minimizes the average code length.
+Prefix-Free Property: No code is a prefix of any other code. This makes it easy to decode the data without ambiguity.
+Lossless Compression: Unlike lossy compression (e.g., JPEG for images), Huffman Coding retains the original data perfectly, making it suitable for text and data files.
